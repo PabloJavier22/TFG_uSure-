@@ -1,11 +1,12 @@
 # TFG_uSure-
+
 My TFG repository
 notion link: https://spring-basil-114.notion.site/uSure-340a39d38760408db904faf615d28ec0?pvs=4
 
-
 Diario
 
-Semana 1 (22-28 / 4) --> 
+Semana 1 (22-28 / 4) -->
+
     Martes --> Creo la base de datos, pero por falta de Xampp (no tengo conexion a internet) no puedo seguir avanzando.
 
     Miercoles --> Descargo Xampp en la empresa y conecto la data base a una api, utilizo la plantilla de Visual Studio durante la creación de esta. (Utilizo https)
@@ -16,7 +17,8 @@ Semana 1 (22-28 / 4) -->
 
     Sabado --> Sigo sin entender porque no funciona, espero al lunes para probar si sirve con el ordenador de la empresa (POSTMAN)
 
-Semana 2 (29-5 / 4) --> 
+Semana 2 (29-5 / 4) -->
+
     Lunes --> En el ordenador de la empresa funciona, pero en la aplicacion con kotlin no hay ningun error... Sigo buscando el error.
 
     Martes --> Haciendo testing pruebo a utilizar http y a enviar texto plano sin codificar, Ahora funciona!! (Creo que necesito un Ceritifcado para usar https y yo tengo uno autofirmado que no sirve).
@@ -25,6 +27,6 @@ Semana 2 (29-5 / 4) -->
 
     Viernes --> Creo la vista de register y intento que funcione, no funciona.
 
-Semana 3 (6-12 / 5) --> 
-    Lunes --> Tengo problemas con git y no me deja subir los archivos, me faltaba el gitIgnore de androidStudio, solo tenia el de AndroidStudio!
+Semana 3 (6-12 / 5) -->
 
+    Lunes --> Tengo problemas con git y no me deja subir los archivos, me faltaba el gitIgnore de androidStudio, solo tenia el de AndroidStudio!
