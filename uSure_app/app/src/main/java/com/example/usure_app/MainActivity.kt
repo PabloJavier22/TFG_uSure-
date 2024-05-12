@@ -38,9 +38,8 @@ class MainActivity : ComponentActivity() {
 
             val requestBody = json.toString().toRequestBody("application/json".toMediaType())
 
-
             val request = Request.Builder()
-                .url("http://192.168.3.108:5169/uSure/Login")
+                .url("http://192.168.178.45:5169/uSure/Login")
                 .post(requestBody)
                 .build()
 

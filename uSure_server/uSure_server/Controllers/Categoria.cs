@@ -8,7 +8,7 @@ namespace uSure_server.Controllers
         [Key]
         public int ID { get; set; }
         public string Nombre { get; set; }
-        public int ID_Grupo { get; set; }
+        public int IDGrupo { get; set; }
         public Grupo Grupo { get; set; }
 
         public ICollection<Producto> Productos { get; set; }

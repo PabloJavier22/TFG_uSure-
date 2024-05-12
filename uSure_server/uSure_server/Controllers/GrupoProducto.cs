@@ -10,10 +10,10 @@ namespace uSure_server.Controllers
 
         [Key]
         [Column(Order = 1)]
-        public int ID_Grupo { get; set; }
+        public int IDGrupo { get; set; }
 
         [Key]
         [Column(Order = 2)]
-        public int ID_Producto { get; set; }
+        public int IDProducto { get; set; }
     }
 }

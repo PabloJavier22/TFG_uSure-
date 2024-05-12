@@ -30,3 +30,15 @@ Semana 2 (29-5 / 4) -->
 Semana 3 (6-12 / 5) -->
 
     Lunes --> Tengo problemas con git y no me deja subir los archivos, me faltaba el gitIgnore de androidStudio, solo tenia el de AndroidStudio!
+
+    Martes --> No paran de saltarme problemas, no encuentro el error.
+
+    Miercoles --> No tengo conexion a internet y no consigo solucionar el error.
+
+    Jueves --> Arrelgo el error el problema era que necesitaba una tabla usuariogrupo, pero igualmente no me funcionan las peticiones correctamente.
+
+    Viernes --> Soluciono todos mis problemas, instalo el packete Newtonsoft.json para arreglar un problema que hace que la serializacion de los json se combiertan en un bucle y la aplicacion no funcione.
+
+    Sabado --> Se va la luz en el piso.
+
+    Domingo --> Consigo que funcione en el movil el registro correcamente, intentare agregar cosas para entregar en el checkpoint fecha limite hoy.

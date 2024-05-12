@@ -1,11 +1,12 @@
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using uSure_server;
+using Microsoft.Extensions.Logging;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace uSure_server.Controllers
 {
@@ -32,15 +33,34 @@ namespace uSure_server.Controllers
                 return BadRequest("Nombre de usuario o contraseña incorrectos");
             }
 
-            return Ok(user);
+            // Configurar las opciones de serialización JSON lo uso para evitar el error de bucles
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+            string jsonString = JsonSerializer.Serialize(user, options);
+
+            return Ok(jsonString);
         }
 
         [HttpGet("UserList")]
-        public async Task<IEnumerable<Usuario>> Get()
+        public async Task<IActionResult> Get()
         {
-            return await _context.Usuarios.ToListAsync();
-        }
+            var users = await _context.Usuarios.ToListAsync();
 
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+
+            string jsonString = JsonSerializer.Serialize(users, options);
+
+            return Ok(jsonString);
+        }
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
@@ -51,46 +71,91 @@ namespace uSure_server.Controllers
                 return BadRequest("Ya existe un usuario con el mismo nombre o correo electrónico");
             }
 
-    
             var newUser = new Usuario
             {
                 Nombre = request.Nombre,
                 Email = request.Email,
                 Password = request.Password,
-                UID = Guid.NewGuid() 
+                UID = Guid.NewGuid()
             };
 
-       
+            // Crear un nuevo grupo "Basico" si no existe
+            var basicGroup = await _context.Grupos.FirstOrDefaultAsync(g => g.Nombre == "Basico");
+           
+                basicGroup = new Grupo
+                {
+                    Nombre = "Basico",
+                    Codigo = Guid.NewGuid().ToString(),
+                    Usuarios = new List<UsuarioGrupo>()
+                };
+                _context.Grupos.Add(basicGroup);
+            
+
+     
+            var usuarioGrupo = new UsuarioGrupo
+            {
+                Usuario = newUser,
+                Grupo = basicGroup
+            };
+
+            _context.UsuarioGrupo.Add(usuarioGrupo);
+
             _context.Usuarios.Add(newUser);
             await _context.SaveChangesAsync();
 
-
-          
-            var homeGroup = new Grupo
+            var options = new JsonSerializerOptions
             {
-                Codigo = "Home",
-                Miembros = newUser.UID.ToString() 
+                WriteIndented = true,
+                ReferenceHandler = ReferenceHandler.Preserve
             };
+            
+            string jsonString = JsonSerializer.Serialize(newUser, options);
 
-
-
-            _context.Grupos.Add(homeGroup);
-            await _context.SaveChangesAsync();
-
-
-            var newCategory = new Categoria
-            {
-                Nombre = "newUSER",
-                ID_Grupo = homeGroup.ID 
-            };
-
-            _context.Categorias.Add(newCategory);
-            await _context.SaveChangesAsync();
-
-            return Ok(newUser);
+            return Ok(jsonString);
         }
 
 
+        [HttpPost("CreateGroup")]
+        public async Task<IActionResult> CreateGroup(CreateGroupRequest request)
+        {
+            try
+            {
+                var newGroup = new Grupo
+                {
+                    Codigo = request.Codigo,
+                    Nombre = request.Nombre,
+                    Usuarios = new List<UsuarioGrupo>() 
+                };
 
+                foreach (var userId in request.Usuarios)
+                {
+                    var usuarioGrupo = new UsuarioGrupo
+                    {
+                        UsuarioUID = userId,
+                        Grupo = newGroup 
+                    };
+
+                    newGroup.Usuarios.Add(usuarioGrupo); 
+                }
+
+                _context.Grupos.Add(newGroup);
+                await _context.SaveChangesAsync();
+
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    ReferenceHandler = ReferenceHandler.Preserve 
+                };
+
+                string jsonString = JsonSerializer.Serialize(newGroup, options);
+
+                return Ok(jsonString);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error al crear el grupo");
+                return StatusCode(500, "Error interno del servidor al crear el grupo");
+            }
+        }
     }
 }
