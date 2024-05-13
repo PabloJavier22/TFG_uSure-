@@ -2,8 +2,8 @@
 {
         public class CreateGroupRequest
         {
-            public string Codigo { get; set; } // Código del grupo
-            public string Nombre { get; set; } // Nombre del grupo
+            public string Codigo { get; set; } 
+            public string Nombre { get; set; } 
 
         public List<Guid> Usuarios { get; set; }
     }

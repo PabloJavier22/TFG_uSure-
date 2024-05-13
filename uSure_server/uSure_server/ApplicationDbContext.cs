@@ -17,7 +17,7 @@ namespace uSure_server
         public DbSet<Controllers.Categoria> Categorias { get; set; }
         public DbSet<Controllers.Producto> Productos { get; set; }
         public DbSet<Controllers.GrupoProducto> Grupo_Producto { get; set; }
-        public DbSet<UsuarioGrupo> UsuarioGrupo { get; set; } // Asegúrate de tener esta propiedad en tu contexto
+        public DbSet<UsuarioGrupo> UsuarioGrupo { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -42,3 +42,5 @@ Semana 3 (6-12 / 5) -->
     Sabado --> Se va la luz en el piso.
 
     Domingo --> Consigo que funcione en el movil el registro correcamente, intentare agregar cosas para entregar en el checkpoint fecha limite hoy.
+
+Video Checkpoint : https://youtu.be/rjMi06aGW5Y

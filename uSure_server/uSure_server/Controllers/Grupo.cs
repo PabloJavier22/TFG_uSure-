@@ -11,11 +11,7 @@ namespace uSure_server.Controllers
         public int ID { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
-
-        // Propiedad Usuarios
-        public ICollection<UsuarioGrupo> Usuarios { get; set; } // Suponiendo que un grupo pueda tener varios usuarios
-        // Fin de la propiedad Usuarios
-
+        public ICollection<UsuarioGrupo> Usuarios { get; set; } 
         public ICollection<Categoria> Categorias { get; set; }
         public ICollection<GrupoProducto> GrupoProductos { get; set; }
     }

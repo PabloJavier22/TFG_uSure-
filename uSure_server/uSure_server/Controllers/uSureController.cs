@@ -79,7 +79,6 @@ namespace uSure_server.Controllers
                 UID = Guid.NewGuid()
             };
 
-            // Crear un nuevo grupo "Basico" si no existe
             var basicGroup = await _context.Grupos.FirstOrDefaultAsync(g => g.Nombre == "Basico");
            
                 basicGroup = new Grupo

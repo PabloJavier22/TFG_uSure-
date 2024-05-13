@@ -11,8 +11,6 @@ namespace uSure_server.Controllers
         public string Nombre { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
-        // Relación muchos a muchos con grupos
         public ICollection<UsuarioGrupo> UsuariosGrupos { get; set; }
     }
 }
