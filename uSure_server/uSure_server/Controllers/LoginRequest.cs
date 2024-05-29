@@ -7,4 +7,5 @@ namespace uSure_server.Controllers
         public string Nombre { get; set; }
         public string Password { get; set; }
     }
+
 }

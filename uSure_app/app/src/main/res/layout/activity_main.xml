@@ -1,35 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextText"
+    <!-- Title TextView -->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:layout_marginTop="141dp"
+        android:background="@color/lightMaroon"
+        android:text="Login"
+        android:textAlignment="center"
+        android:textColor="@color/background"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:fontFamily="sans-serif-black"/>
+
+    <!-- Username TextInputLayout -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="UserName" />
+        android:layout_marginBottom="5dp">
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginUsername"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/edittextborder"
+            android:drawableRight="@drawable/user"
+            android:fontFamily="sans-serif-black"
+            android:hint="@string/username"
+            android:padding="10dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Password TextInputLayout -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="password" />
+        android:layout_marginBottom="5dp">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPassword"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/edittextborder"
+            android:drawableRight="@drawable/key"
+            android:fontFamily="sans-serif-black"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="10dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Submit Button -->
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/lightMaroon"
+        android:fontFamily="sans-serif-black"
+        android:text="Submit"
+        android:textColor="@color/background" />
 
+    <Button
+        android:id="@+id/noConexionButton"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/lightMaroon"
+        android:fontFamily="sans-serif-black"
+        android:text="no Conexion"
+        android:textColor="@color/background" />
+
+
+    <!-- Create Account TextView -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Don't have and account? register"
-        android:textColor="#0099CC"/>
+        android:text="@string/createaccount"
+        android:textAlignment="center"
+        android:textColor="@color/darkMaroon"/>
+
 </LinearLayout>

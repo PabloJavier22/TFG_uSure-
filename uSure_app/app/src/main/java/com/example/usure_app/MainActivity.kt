@@ -22,11 +22,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val usernameEditText = findViewById<EditText>(R.id.editTextText)
-        val passwordEditText = findViewById<EditText>(R.id.editTextTextPassword)
+        val usernameEditText = findViewById<EditText>(R.id.loginUsername)
+        val passwordEditText = findViewById<EditText>(R.id.loginPassword)
         val submitButton = findViewById<Button>(R.id.button)
+        val noConexionButton = findViewById<Button>(R.id.noConexionButton)
         val registerTextView = findViewById<TextView>(R.id.textView3)
 
+noConexionButton.setOnClickListener {
+    startActivity(Intent(this@MainActivity, LogedActivity::class.java))
+}
         submitButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
@@ -39,7 +43,7 @@ class MainActivity : ComponentActivity() {
             val requestBody = json.toString().toRequestBody("application/json".toMediaType())
 
             val request = Request.Builder()
-                .url("http://192.168.178.45:5169/uSure/Login")
+                .url("http://192.168.3.108:5169/uSure/Login")
                 .post(requestBody)
                 .build()
 

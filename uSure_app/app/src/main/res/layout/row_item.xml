@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+android:background="@drawable/item"
+>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif-black"
+        android:gravity="left"
+        android:padding="10dp"
+        android:text="Celda 1"
+        android:textColor="@color/background"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:textAlignment="textEnd"
+        android:padding="10dp"
+        android:text="Celda 2"
+        android:textColor="@color/background"
+        android:textSize="20sp" />
+</TableRow>

@@ -1,18 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
+<!-- activity_loged.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <!-- Title TextView -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Group Name"
+        android:textAlignment="center"
+        android:textColor="@color/darkMaroon"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:fontFamily="sans-serif-black"/>
+
+    <!-- Username TextInputLayout -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Working!!"
-        android:textSize="60dp"
-        android:textAlignment="center"
-        android:textColor="@color/Purple40"/>
+        android:layout_marginBottom="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_bar"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/edittextborder"
+            android:drawableRight="@drawable/search"
+            android:fontFamily="sans-serif-black"
+            android:hint="@string/searchbar"
+            android:padding="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textTableName"
+        android:layout_width="175dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:fontFamily="sans-serif-black"
+        android:text="Table Name"
+        android:textColor="@color/darkMaroon"
+        android:layout_gravity="center"
+        android:background="@drawable/edittextborder"/>
+
+
+    <!-- ViewPager2 para el carrusel de tablas -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="450dp">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <!-- Separador -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#BDB496"/>
+
+    <!-- Botón -->    <!-- Botón secundario oculto -->
+    <Button
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:elevation="2dp"
+        android:background="@drawable/circlebutton" />
+
+    <!-- Botón secundario -->
+    <Button
+        android:id="@+id/hiddenButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-100dp"
+        android:layout_marginBottom="15dp"
+        android:elevation="1dp"
+        android:background="@drawable/circlebutton2"
+        android:visibility="invisible" />
+    <Button
+        android:id="@+id/hiddenButton2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-115dp"
+        android:layout_marginBottom="15dp"
+        android:elevation="1dp"
+        android:background="@drawable/circlebutton3"
+        android:visibility="invisible" />
+    <Button
+        android:id="@+id/hiddenButton3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-115dp"
+        android:layout_marginBottom="15dp"
+        android:elevation="1dp"
+        android:background="@drawable/circlebutton4"
+        android:visibility="invisible" />
+
+
 </LinearLayout>
