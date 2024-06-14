@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_sumar"
-        android:title="Add" />
+        android:title="@string/add" />
     <item
         android:id="@+id/action_restar"
-        android:title="Remove" />
+        android:title="@string/remove" />
     <item
         android:id="@+id/action_eliminar"
-        android:title="Delete" />
+        android:title="@string/delete" />
 </menu>

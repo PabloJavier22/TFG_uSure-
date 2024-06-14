@@ -9,13 +9,13 @@
         android:id="@+id/editTextProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Product Name" />
+        android:hint="@string/product_name" />
 
     <EditText
         android:id="@+id/editTextQuantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Quantity"
+        android:hint="@string/quantity"
         android:inputType="number" />
 
 </LinearLayout>

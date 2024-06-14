@@ -3,12 +3,18 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="createaccount"><u>Don\'t have an account? Register</u></string>
-
     <string name="email">Email</string>
     <string name="repeatpassword">Repeat Password</string>
     <string name="accountcreated"><u>Already have and account? login</u></string>
-
     <string name="searchbar">Search</string>
-
-
+    <string name="submit">Submit</string>
+    <string name="personal">Personal</string>
+    <string name="table_name">Table Name</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="product_name">Product Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">uSure_app</string>
+    <string name="password">Contraseña</string>
+    <string name="username">Nombre</string>
+    <string name="createaccount"><u>No tienes una cuenta? Registrate</u></string>
+    <string name="email">Correo</string>
+    <string name="repeatpassword">Repite la contraseña</string>
+    <string name="accountcreated"><u>Ya tienes una cuenta? Inicia sesion</u></string>
+    <string name="searchbar">Buscar</string>
+    <string name="submit">Aceptar</string>
+    <string name="personal">Personal</string>
+    <string name="table_name">Nombre Tabla</string>
+    <string name="login">Iniciar Sesion</string>
+    <string name="register">Registrarse</string>
+    <string name="product_name">Nombre Producto</string>
+    <string name="quantity">Cantidad</string>
+    <string name="add">Sumar</string>
+    <string name="remove">Restar</string>
+    <string name="delete">Borrar</string>
+</resources>

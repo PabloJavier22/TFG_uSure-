@@ -12,7 +12,7 @@
         android:background="@color/lightMaroon"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
-        android:text="Register"
+        android:text="@string/register"
         android:textAlignment="center"
         android:textColor="@color/background"
         android:textSize="24sp" />
@@ -90,7 +90,7 @@
         android:layout_marginBottom="5dp"
         android:background="@color/lightMaroon"
         android:fontFamily="sans-serif-black"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textColor="@color/background" />
 
     <TextView

@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
         val registerTextView = findViewById<TextView>(R.id.textView3)
 
         noConexionButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, LogedActivity::class.java))
+            startActivity(Intent(this@MainActivity, LogedActivityLocal::class.java))
         }
 
         submitButton.setOnClickListener {
@@ -95,7 +95,7 @@ class MainActivity : ComponentActivity() {
 
         // Mostrar el token guardado en un Toast para verificación (objetivo solo para debugear borrar mas tarde)!!
         val savedToken = sharedPreferences.getString("user_token", null)
-        Toast.makeText(this, "Token guardado: $savedToken", Toast.LENGTH_LONG).show()
+       // Toast.makeText(this, "Token guardado: $savedToken", Toast.LENGTH_LONG).show()
     }
 
     private fun saveURL(url: String) {

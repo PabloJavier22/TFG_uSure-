@@ -5,17 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Title TextView -->
-    <Spinner
-        android:background="@drawable/edittextborder"
-        android:id="@+id/groupsSpinner"
-        android:layout_width="250dp"
-        android:layout_height="35dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-black"
 
-        />
 
     <!-- Username TextInputLayout -->
     <com.google.android.material.textfield.TextInputLayout

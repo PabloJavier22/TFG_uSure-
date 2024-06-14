@@ -10,7 +10,7 @@
         android:layout_height="77dp"
         android:layout_marginTop="141dp"
         android:background="@color/lightMaroon"
-        android:text="Login"
+        android:text="@string/login"
         android:textAlignment="center"
         android:textColor="@color/background"
         android:textSize="24sp"
@@ -66,7 +66,7 @@
         android:layout_marginBottom="5dp"
         android:background="@color/lightMaroon"
         android:fontFamily="sans-serif-black"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textColor="@color/background" />
 
     <Button
@@ -78,7 +78,7 @@
         android:layout_marginBottom="5dp"
         android:background="@color/lightMaroon"
         android:fontFamily="sans-serif-black"
-        android:text="no Conexion"
+        android:text="@string/personal"
         android:textColor="@color/background" />
 
 
