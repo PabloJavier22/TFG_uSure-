@@ -16,6 +16,9 @@ import java.io.File
 
 object TableUtils {
 
+
+
+
     fun obtenerTablasDeArchivo(context: Context, fileName: String): Pair<List<TableLayout>, List<String>> {
         var tablas: MutableList<TableLayout> = mutableListOf()
         var nombresTablas: MutableList<String> = mutableListOf()

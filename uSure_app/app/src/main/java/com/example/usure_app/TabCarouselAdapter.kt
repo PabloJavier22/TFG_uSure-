@@ -10,14 +10,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
-//Aqui lo que tenemos es un adaptador para nuestro ReciclerView, ReciclerView es la vista de la lista
 class TabCarouselAdapter(
-    private var tables: List<TableLayout>, //Lista de Tablas
-    private var tableNames: List<String> //Lista de nombres de Tablas
+    private var tables: List<TableLayout>,
+    private var tableNames: List<String>
 ) : RecyclerView.Adapter<TabCarouselAdapter.TabViewHolder>() {
 
+    private var originalTables: List<TableLayout> = tables // Guardamos la lista original de tablas
+    private var originalTableNames: List<String> = tableNames // Guardamos la lista original de nombres
+
     inner class TabViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tableLayout: TableLayout = itemView.findViewById(R.id.tableLayout) //Aquí recogemos el diseño de las tablas
+        val tableLayout: TableLayout = itemView.findViewById(R.id.tableLayout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TabViewHolder {
@@ -25,10 +27,7 @@ class TabCarouselAdapter(
             .inflate(R.layout.tab_item_layout, parent, false)
         return TabViewHolder(view)
     }
-    fun updateTables(newTables: List<TableLayout>, newTableNames: List<String>) {
-        tables = newTables
-        tableNames = newTableNames
-    }
+
     override fun onBindViewHolder(holder: TabViewHolder, position: Int) {
         val table = tables[position]
         holder.tableLayout.removeAllViews()
@@ -53,6 +52,12 @@ class TabCarouselAdapter(
 
     override fun getItemCount(): Int {
         return tables.size
+    }
+
+    fun updateTables(newTables: List<TableLayout>, newTableNames: List<String>) {
+        tables = newTables
+        tableNames = newTableNames
+        notifyDataSetChanged()
     }
 
     private fun showPopupMenu(view: View, tablePosition: Int, rowPosition: Int) {

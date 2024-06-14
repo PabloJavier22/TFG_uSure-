@@ -1,5 +1,6 @@
 package com.example.usure_app
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -34,6 +35,12 @@ class RegisterActivity : ComponentActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
             val repeatPassword = repeatPasswordEditText.text.toString()
+            val sharedPreferences = getSharedPreferences("uSurePrefs", Context.MODE_PRIVATE)
+            val savedURL = sharedPreferences.getString("user_URL", null)
+            if (password != repeatPassword) {
+                Toast.makeText(this@RegisterActivity, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener  // Salir del listener sin hacer la solicitud
+            }
 
             val json = JSONObject().apply {
                 put("nombre", username)
@@ -44,7 +51,7 @@ class RegisterActivity : ComponentActivity() {
             val requestBody = json.toString().toRequestBody("application/json".toMediaType())
 
             val request = Request.Builder()
-                .url("http://192.168.178.45:5169/uSure/Register")
+                .url("$savedURL/Register")
                 .post(requestBody)
                 .build()
 
@@ -56,8 +63,8 @@ class RegisterActivity : ComponentActivity() {
                     if (response.isSuccessful) {
                         val responseBody = response.body?.string()
                         launch(Dispatchers.Main) {
-                            Toast.makeText(this@RegisterActivity, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this@RegisterActivity, LogedActivity::class.java))
+                            Toast.makeText(this@RegisterActivity, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
                         }
                     } else {
                         launch(Dispatchers.Main) {

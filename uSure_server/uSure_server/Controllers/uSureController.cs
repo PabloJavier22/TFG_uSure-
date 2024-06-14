@@ -256,7 +256,209 @@ namespace uSure_server.Controllers
             }
         }
 
+        [HttpGet("Groups/{groupName}/Tables")]
+        public async Task<IActionResult> GetTables(string groupName)
+        {
+            try
+            {
+                var userIdClaim = User.FindFirst("ID");
 
+                if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out Guid userUid))
+                {
+                    return Unauthorized("El token no contiene un UID válido");
+                }
+
+                var userGroups = await _context.UsuarioGrupo
+                    .Where(ug => ug.UsuarioUID == userUid)
+                    .Include(ug => ug.Grupo)
+                    .Select(ug => ug.Grupo)
+                    .ToListAsync();
+
+                var group = userGroups.FirstOrDefault(g => g.Nombre == groupName);
+
+                if (group == null)
+                {
+                    return NotFound("El usuario no pertenece a este grupo");
+                }
+
+                var categories = await _context.Categorias
+                    .Where(c => c.IDGrupo == group.ID)
+                    .Include(c => c.Productos)
+                    .ToListAsync();
+
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
+                };
+
+                string jsonString = JsonSerializer.Serialize(categories, options);
+
+                return Ok(jsonString);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error al obtener las tablas del grupo");
+                return StatusCode(500, "Error interno del servidor al obtener las tablas del grupo");
+            }
+        }
+        [HttpPost("CreateTable")]
+        public async Task<ActionResult<Categoria>> PostCategoria([FromBody] CategoriaCreateRequest request)
+        {
+            if (request == null || string.IsNullOrEmpty(request.Nombre) || request.IDGrupo <= 0)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            var categoria = new Categoria
+            {
+                Nombre = request.Nombre,
+                IDGrupo = request.IDGrupo,
+                Productos = new List<Producto>()
+            };
+
+            _context.Categorias.Add(categoria);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetCategoriaById), new { id = categoria.ID }, categoria);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Categoria>> GetCategoriaById(int id)
+        {
+            var categoria = await _context.Categorias.FindAsync(id);
+
+            if (categoria == null)
+            {
+                return NotFound();
+            }
+
+            return categoria;
+        }
+
+        [HttpPost("createProduct")]
+        public async Task<ActionResult<Producto>> PostProducto(ProductoCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Verifica si la categoría con la ID especificada existe
+            if (request.IDCategoria != 0)
+            {
+                var categoria = await _context.Categorias.FindAsync(request.IDCategoria);
+                if (categoria == null)
+                {
+                    // Si la categoría no existe, devuelve un error 404 (Not Found)
+                    return NotFound("La categoría especificada no existe.");
+                }
+            }
+
+            // Convierte GrupoProductos de GrupoProductoCreateRequest a ICollection<GrupoProducto>
+            var grupoProductos = request.GrupoProductos.Select(gpr => new GrupoProducto
+            {
+                IDGrupo = gpr.IDGrupo,
+                // Asigna otros valores si es necesario
+            }).ToList();
+
+            // Crea un nuevo producto y asigna los valores
+            var producto = new Producto
+            {
+                Nombre = request.Nombre,
+                Cantidad = request.Cantidad,
+                IDCategoria = request.IDCategoria,
+                GrupoProductos = grupoProductos
+            };
+
+            // Agrega el producto al contexto
+            _context.Productos.Add(producto);
+
+            // Guarda los cambios en la base de datos
+            await _context.SaveChangesAsync();
+
+            // Devuelve el producto creado
+            return CreatedAtAction(nameof(GetProducto), new { id = producto.ID }, producto);
+        }
+
+
+
+
+        [HttpGet("Productos/{id}")]
+        public async Task<ActionResult<Producto>> GetProducto(int id)
+        {
+            var producto = await _context.Productos.FindAsync(id);
+
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            return producto;
+        }
+
+        [HttpGet("Groups/{groupName}/Tables/{categoria}/ProductList")]
+        public async Task<IActionResult> GetProductListForTables(string groupName, string categoria)
+        {
+            try
+            {
+                var userIdClaim = User.FindFirst("ID");
+
+                if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out Guid userUid))
+                {
+                    return Unauthorized("El token no contiene un UID válido");
+                }
+
+                var userGroups = await _context.UsuarioGrupo
+                    .Where(ug => ug.UsuarioUID == userUid)
+                    .Include(ug => ug.Grupo)
+                    .Select(ug => ug.Grupo)
+                    .ToListAsync();
+
+                var group = userGroups.FirstOrDefault(g => g.Nombre == groupName);
+
+                if (group == null)
+                {
+                    return NotFound("El usuario no pertenece a este grupo");
+                }
+
+                // Encuentra la categoría específica
+                var categoriaObj = await _context.Categorias
+                    .FirstOrDefaultAsync(c => c.Nombre == categoria && c.IDGrupo == group.ID);
+
+                if (categoriaObj == null)
+                {
+                    return NotFound("La categoría especificada no existe en este grupo");
+                }
+
+                // Obtiene los productos asociados a la categoría
+                var productList = await _context.Productos
+                    .Where(p => p.IDCategoria == categoriaObj.ID)
+                    .ToListAsync();
+
+                // Devuelve la lista de productos
+                return Ok(productList);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error al obtener la lista de productos de la tabla");
+                return StatusCode(500, "Error interno del servidor al obtener la lista de productos de la tabla");
+            }
+        }
+        [HttpDelete("DeleteTable/{id}")]
+        public async Task<IActionResult> DeleteCategoria(int id)
+        {
+            var categoria = await _context.Categorias.FindAsync(id);
+            if (categoria == null)
+            {
+                return NotFound();
+            }
+
+            _context.Categorias.Remove(categoria);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
     }
 }

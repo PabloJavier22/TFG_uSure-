@@ -3,20 +3,21 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="match_parent"
         android:layout_height="77dp"
         android:layout_marginTop="141dp"
-        android:background="#BDB496"
+        android:background="@color/lightMaroon"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
         android:text="Register"
         android:textAlignment="center"
-        android:textColor="#3C301F"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:fontFamily="sans-serif-black"/>
+        android:textColor="@color/background"
+        android:textSize="24sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp">
@@ -87,10 +88,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:background="#BDB496"
+        android:background="@color/lightMaroon"
         android:fontFamily="sans-serif-black"
         android:text="Submit"
-        android:textColor="#3C301F" />
+        android:textColor="@color/background" />
 
     <TextView
         android:id="@+id/textView3"
@@ -98,5 +99,5 @@
         android:layout_height="wrap_content"
         android:text="@string/accountcreated"
         android:textAlignment="center"
-        android:textColor="#3C301F"/>
+        android:textColor="@color/darkMaroon" />
 </LinearLayout>
