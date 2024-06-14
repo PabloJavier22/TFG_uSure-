@@ -2,6 +2,13 @@
 
 My TFG repository
 notion link: https://spring-basil-114.notion.site/uSure-340a39d38760408db904faf615d28ec0?pvs=4
+Enlace apk: https://drive.google.com/file/d/1Kd38Nd3wLZP6s_31kzNXlWSPkAmjYSDr/view?usp=sharing
+Presentación: https://www.canva.com/design/DAGH8qhT5a0/uZm5TQ3tFMg29FOxvNdgVQ/edit?utm_content=DAGH8qhT5a0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+Presentación PDF: https://drive.google.com/file/d/1K-hD9L5RHo-wYB3LOY3vSIeTTZ2Hofd7/view?usp=sharing
+Manual de Instrucciones: https://drive.google.com/file/d/1B--_71-IqR_RVoKNxnZ7IlvFHyE0-KK1/view?usp=sharing
+Video Youtube: https://www.youtube.com/watch?v=eyDbm2VBvhM&ab_channel=pablojaviet22
+Esquema de la bases de datos: ![image](https://github.com/PabloJavier22/TFG_uSure-/assets/117372943/d8fbb7cc-01a8-4905-af12-9d4c9b84489e)
+
 
 Diario
 
