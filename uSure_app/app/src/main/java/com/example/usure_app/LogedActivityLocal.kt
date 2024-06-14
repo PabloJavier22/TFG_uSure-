@@ -37,7 +37,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
-class LogedActivity : ComponentActivity() {
+class LogedActivityLocal : ComponentActivity() {
 
     private val fileName = "tables_data.txt"
     private lateinit var viewPager: ViewPager2
@@ -121,12 +121,12 @@ class LogedActivity : ComponentActivity() {
                     val selectedGroupId = groupIds[position]
                     tableNameTextView.text = tableNames[actualTable]
                     if (token != null && savedURL != null) {
-                        loadTablesForGroup(this@LogedActivity, savedURL, token, selectedGroup)
+                        loadTablesForGroup(this@LogedActivityLocal, savedURL, token, selectedGroup)
                     } else {
-                        Toast.makeText(this@LogedActivity, "No se encontró el token o la URL", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LogedActivityLocal, "No se encontró el token o la URL", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Toast.makeText(this@LogedActivity, "No hay grupos disponibles.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LogedActivityLocal, "No hay grupos disponibles.", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -154,12 +154,12 @@ class LogedActivity : ComponentActivity() {
                         groupIds = parseGroupID(responseBody)
                         updateSpinner(groupNames)
                     } else {
-                        Toast.makeText(this@LogedActivity, "Hubo un problema con los grupos, pruebe de nuevo más tarde", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LogedActivityLocal, "Hubo un problema con los grupos, pruebe de nuevo más tarde", Toast.LENGTH_LONG).show()
                     }
                 }
             } catch (e: IOException) {
                 launch(Dispatchers.Main) {
-                    Toast.makeText(this@LogedActivity, "Error en la solicitud: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LogedActivityLocal, "Error en la solicitud: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -216,7 +216,7 @@ class LogedActivity : ComponentActivity() {
                         if (response.isSuccessful && responseBody != null) {
                             val updatedTables = parseProductList(context, responseBody)
                             tables.add(updatedTables)
-                            adapter.updateTables(tables, this@LogedActivity.tableNames)
+                            adapter.updateTables(tables, this@LogedActivityLocal.tableNames)
                             adapter.notifyDataSetChanged()
                         } else {
                             Toast.makeText(context, "Error en la solicitud: ${response.message}", Toast.LENGTH_LONG).show()
@@ -384,19 +384,19 @@ class LogedActivity : ComponentActivity() {
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     runOnUiThread {
-                        Toast.makeText(this@LogedActivity, "Error deleting table: ${e.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LogedActivityLocal, "Error deleting table: ${e.message}", Toast.LENGTH_LONG).show()
                     }
                 }
 
                 override fun onResponse(call: Call, response: Response) {
                     if (response.isSuccessful) {
                         runOnUiThread {
-                            Toast.makeText(this@LogedActivity, "Table deleted successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LogedActivityLocal, "Table deleted successfully", Toast.LENGTH_SHORT).show()
                             updateGroupsSpinner(savedURL, token)
                         }
                     } else {
                         runOnUiThread {
-                            Toast.makeText(this@LogedActivity, "Error deleting table: ${response.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@LogedActivityLocal, "Error deleting table: ${response.message}", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
@@ -655,17 +655,17 @@ class LogedActivity : ComponentActivity() {
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     runOnUiThread {
-                        Toast.makeText(this@LogedActivity, "Error en la solicitud: ${e.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LogedActivityLocal, "Error en la solicitud: ${e.message}", Toast.LENGTH_LONG).show()
                     }
                 }
 
                 override fun onResponse(call: Call, response: Response) {
                     runOnUiThread {
                         if (response.isSuccessful) {
-                            Toast.makeText(this@LogedActivity, "Producto creado exitosamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LogedActivityLocal, "Producto creado exitosamente", Toast.LENGTH_SHORT).show()
                             setupGroupsSpinner(savedURL, token)
                         } else {
-                            Toast.makeText(this@LogedActivity, "Error en la solicitud: ${response.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@LogedActivityLocal, "Error en la solicitud: ${response.message}", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
